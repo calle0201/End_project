@@ -3,29 +3,9 @@ body {
     height: 100%;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-  }
-  li {
-    float: left;
-  }
-  li .nav {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
 
-.active {
-    background-color: #3325f5;
-  }
 
-.container {
+.kontainer {
     
     background: rgb(22, 17, 17);
     color: rgb(212, 212, 212);
@@ -33,7 +13,7 @@ ul {
     height: 1000px;
 
 }
-.container h1 {
+.kontainer h1 {
     font-size: 50px;
     text-align: center;
     margin: 0px;
@@ -46,7 +26,7 @@ ul {
     justify-content: center;
 }
 
-.container img {
+.kontainer img {
 background: black;
 padding: 5px;
 width: 600px;

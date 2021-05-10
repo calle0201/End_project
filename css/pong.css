@@ -1,0 +1,11 @@
+.container {
+    background: rgb(22, 17, 17);
+    padding: 150px 0 150px;
+}
+canvas {
+    display: block;
+    width: 800px;
+   
+    margin: auto;
+    ;
+}

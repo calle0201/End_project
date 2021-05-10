@@ -4,7 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Game_site</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/landing_page.css">
+    <link rel="stylesheet" href="css/header.css">
+ 
 </head>
 <body>
  
@@ -14,14 +20,16 @@
         <nav>
             <ul>
                 <li><a class="active nav" href="#">Homepage</a></li>
-                <li><a class="nav" href="">login</a></li>
-                <li><a class="nav" id="logout" href="#">logout</a></li>
+                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">login</a></li>
+                <li hidden id="logout"><a class="nav" href="#">logout</a></li>
+                <li  id="register"><a class="nav" href="">register</a></li>
+                <li id="account" hidden><a class="nav"  href="">my account</a></li>
             </ul>
         </nav>
     </header>
 
 
-    <div class="container">
+    <div class="kontainer">
         <h1>Our games</h1> 
         <div class="flexbox">
             <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
@@ -33,5 +41,55 @@
 
 
     </footer>
+
+
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+      
+      </div>
+      <div class="modal-body">
+          <form action="#" method="post">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+        
+            <button type="submit">Login</button>
+            <label>
+              <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn ">Login</button>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
+
+
+
 </html>
+class AI{
+  constructor() {
+    this.paddle = 250;
+    this.PADDLE_HEIGHT = 100;
+    this.PADDLE_THICKNESS = 10;
+    this.paddleCenter = this.paddle + (this.PADDLE_HEIGHT/2)
+  }
+  computerMovement() {
+    
+    if(this.paddleCenter < bally-35) {
+      this.paddle += 6;
+    } else if(this.paddleCenter > bally+35) {
+      this.paddle -= 6;
+    }
+}
+
+}

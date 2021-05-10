@@ -1,172 +1,30 @@
-<html>
+<!DOCTYPE html>
+<html lang="sv">
 <head>
-<title>pong</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>pong</title>
+	<link rel="stylesheet" href="./css/header.css">
+	<link rel="stylesheet" href="./css/pong.css">
 </head>
-	<canvas id="gamecanvas" width="800" height="600"> </canvas>
+<body>
+	<header>
+        <!-- <img src="" alt="" class="logo"> -->
+
+        <nav>
+            <ul>
+                <li><a class="active nav" href="#">Homepage</a></li>
+                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">login</a></li>
+                <li hidden id="logout"><a class="nav" href="#">logout</a></li>
+                <li  id="register"><a class="nav" href="">register</a></li>
+                <li id="account" hidden><a class="nav"  href="">my account</a></li>
+            </ul>
+        </nav>
+    </header>
+	<div class="container">
+		<canvas id="gamecanvas" width="800" height="600"> </canvas>
+		<script src="./javascript/pong.js"></script>
+	</div>
 	
-	<script>
-		var canvas; 
-		var canvasContext;
-		var ballx = 50;
-		var bally = 50;
-		var ballspeedx = 10;
-		var ballspeedy = 4;
-		
-		var player1Score = 0;
-		var player2Score = 0;
-		const WINNING_SCORE = 3;
-		
-		var showingWinScreen = false;
-		
-		var paddle1y = 250;
-		var paddle2y = 250;
-		const PADDLE_HEIGHT = 100; // constant thing
-		const PADDLE_THICKNESS = 10;
-		
-		function calcuateMousePos(evt) {
-				var rect = canvas.getBoundingClientRect()
-				var root = document.documentElement;
-				var mouseX = evt.clientX - rect.left -root.scrollLeft;
-				var mouseY = evt.clientY - rect.top -root.scrollTop;
-				return {
-				x:mouseX,
-				y:mouseY
-			};
-}
-
-				function handleMouseClick(evt) {
-				if(showingWinScreen) {
-				player1Score =0;
-				player2Score =0;
-				showingWinScreen = false;
-			}
-}
-		
-		window.onload = function() { // laddas bara när sidan är ladad kalart
-		canvas = document.getElementById('gamecanvas');
-		canvasContext = canvas.getContext('2d');
-		canvasContext.fillStyle = 'black';
-		canvasContext.fillRect(0,0,canvas.width,canvas.height);
-		
-		canvas.addEventListener('mousedown',handleMouseClick);
-		
-		canvas.addEventListener('mousemove',
-					function(evt){
-							var mousePos = calcuateMousePos(evt);
-							paddle1y = mousePos.y-(PADDLE_HEIGHT/2);
-					});
-		
-		var FramesPerSecond = 30;
-		setInterval(function() {
-				drawEverything();
-				moveEverthing();
-	}		, 1000/FramesPerSecond );
-}
-
-		function ballReset() {
-				if(player1Score >= WINNING_SCORE ||
-					player2Score >= WINNING_SCORE) { 
-						showingWinScreen = true;
-					}
-		
-				ballspeedx = -ballspeedx;
-				ballx =canvas.width/2;
-				bally =canvas.height/2;
-		}
-		
-		function computerMovement() {
-				var paddle2yCenter = paddle2y + (PADDLE_HEIGHT/2)
-				if(paddle2yCenter < bally-35) {
-					paddle2y += 6;
-				} else if(paddle2yCenter > bally+35) {
-					paddle2y -= 6;
-				}
-		}
-		
-		function moveEverthing() { //gör så saker rör sig
-			if(showingWinScreen) {
-					return;
-			}
-		
-			computerMovement();
-		
-			ballx = ballx + ballspeedx; 
-			bally = bally + ballspeedy; 
-			if(bally < 0) {
-				ballspeedy = -ballspeedy;
-		}
-		
-			if(ballx < 0) {
-				if(bally > paddle1y &&
-				   bally < paddle1y+PADDLE_HEIGHT) {
-					ballspeedx = -ballspeedx;
-					
-					var deltay = bally -(paddle1y+PADDLE_HEIGHT/2);
-						ballspeedy = deltay * 0.35;
-				}	else {
-					player2Score += 1;
-					ballReset();
-				}
-		}
-		if(bally > canvas.height) {
-			ballspeedy = -ballspeedy;
-		}
-		
-		if(ballx > canvas.width) {
-				if(bally > paddle2y &&
-				   bally < paddle2y+PADDLE_HEIGHT) {
-					ballspeedx = -ballspeedx;
-					var deltay = bally -(paddle2y+PADDLE_HEIGHT/2);
-						ballspeedy = deltay * 0.35;
-				}	else {
-					player1Score += 1;
-					ballReset();
-				}
-			}
-		}
-
-		function drawEverything() { 
-					
-		if(showingWinScreen) {
-					if(player1Score >= WINNING_SCORE) {
-					canvasContext.fillText("player one wins", 350,280);
-					}else if(player2Score >= WINNING_SCORE) {
-					canvasContext.fillText("player two wins", 350,280);
-					}
-					
-			canvasContext.fillStyle = "white"
-			canvasContext.fillText("click to continue", 350,300);
-			return;
-	
-		}
-		
-		canvasContext.fillStyle = 'black';
-		canvasContext.fillRect(0,0,canvas.width,canvas.height,);
-		
-		
-		
-		//den vänstra paddlen
-		canvasContext.fillStyle = 'white';
-		canvasContext.fillRect(0,paddle1y,PADDLE_THICKNESS,PADDLE_HEIGHT)
-		
-		// den högra paddlen den är stryd av en dator
-		canvasContext.fillStyle = 'white';
-		canvasContext.fillRect(canvas.width-PADDLE_THICKNESS,paddle2y,PADDLE_THICKNESS,PADDLE_HEIGHT)
-		
-		//bollen
-		colorCircle(ballx, bally, 10, 'white')
-		
-		canvasContext.fillText(player1Score, 100,100);
-		canvasContext.fillText(player2Score, canvas.width-100,100);
-		
-		}
-		
-		function colorCircle(centerX, centerY, radius, drawColor) {
-		canvasContext.fillStyle = drawColor;
-		canvasContext.beginPath();
-		canvasContext.arc(centerX,centerY,radius,0,Math.PI*2, true);
-		canvasContext.fill();
-		}
-		
-	</script>
+</body>
 </html>
