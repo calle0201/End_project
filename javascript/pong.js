@@ -10,10 +10,8 @@
 		var player2Score = 0;
 		const WINNING_SCORE = 3;
 		
-		var showingWinScreen = false;
-
-
-
+		var game.showingWinScreen = false;
+		
 		var paddle1y = 250;
 	 var paddle2y = 250;
 		const PADDLE_HEIGHT = 100; // constant thing
@@ -31,10 +29,10 @@
 }
 
 				function handleMouseClick(evt) {
-				if(showingWinScreen) {
+				if(game.showingWinScreen) {
 				player1Score =0;
 				player2Score =0;
-				showingWinScreen = false;
+				game.showingWinScreen = false;
 			}
 }
 		
@@ -62,7 +60,7 @@
 		function ballReset() {
 				if(player1Score >= WINNING_SCORE ||
 					player2Score >= WINNING_SCORE) { 
-						showingWinScreen = true;
+						game.showingWinScreen = true;
 					}
 		
 				ballspeedx = -ballspeedx;
@@ -81,7 +79,7 @@
 		}
 		
 		function moveEverthing() { //gör så saker rör sig
-			if(showingWinScreen) {
+			if(game.showingWinScreen) {
 					return;
 			}
 		
@@ -124,7 +122,7 @@
 
 		function drawEverything() { 
 					
-		if(showingWinScreen) {
+		if(game.showingWinScreen) {
 					if(player1Score >= WINNING_SCORE) {
 					ctx.fillText("player one wins", 350,280);
 					}else if(player2Score >= WINNING_SCORE) {

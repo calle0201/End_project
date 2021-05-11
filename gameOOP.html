@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>pong</title>
+	<link rel="stylesheet" href="./css/header.css">
+	<link rel="stylesheet" href="./css/pong.css">
+</head>
+<body>
+	<header>
+        <!-- <img src="" alt="" class="logo"> -->
+
+        <nav>
+            <ul>
+                <li><a class="active nav" href="#">Homepage</a></li>
+                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">login</a></li>
+                <li hidden id="logout"><a class="nav" href="#">logout</a></li>
+                <li  id="register"><a class="nav" href="">register</a></li>
+                <li id="account" hidden><a class="nav"  href="">my account</a></li>
+            </ul>
+        </nav>
+    </header>
+	<div class="container">
+		<canvas id="gamecanvas" width="800" height="600"> </canvas>
+		<script src="./javascript/pong_OOP.js"></script>
+	</div>
+	
+</body>
+</html>
