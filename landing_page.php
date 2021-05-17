@@ -11,6 +11,7 @@ include "./resurser/conn.php";
 session_start();
 ?>
 
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
@@ -32,13 +33,10 @@ session_start();
 
         <nav>
             <ul>
-                <li><a class=" nav" href="./landing_page.html">Homepage</a></li>
-                
-                <li hidden id="logout"><a class="nav" href="#">logout</a></li>
+                <li><a class="active nav" href="#">Homepage</a></li>
                 <?php
-                $_SESSION['logged_in'] = false;
-               
-                if ($_SESSION['logged_in'] == true) {
+                 $_SESSION['logged_in'] = false;
+                 if ($_SESSION['logged_in'] == true) {
                 ?> 
                 <li ><a data-toggle="modal" data-target="#login" class="nav" href="">login</a></li>
                 <li  id="register"><a class="active nav" href="">register</a></li> 
@@ -54,38 +52,22 @@ session_start();
         </nav>
     </header>
 
+
     <div class="kontainer">
-    <h1>register</h1>
-    <div class="flexbox">
-    <form class="register" action="#" method="post">
-    <label for="Email"><b>Email</b></label>
-            <br>
-            <input type="text" placeholder="Enter Email" name="Email" required>
-        <br>
-            <label for="uname"><b>Username</b></label>
-            <br>
-            <input type="text" placeholder="Enter Username" name="uname" required>
-        <br>
-            <label for="psw"><b>Password</b></label>
-            <br>
-            <input type="password" placeholder="Enter Password" name="psw" required>
-        <br>
-        <label for="pswCon"><b>Confirm password</b></label>
-        <br>
-            <input type="password" placeholder="Confirm password" name="pswCon" required>
-        <br>
-            <button type="submit" class="btn ">register</button>
-          
-          </form>
-          </div>
+        <h1>Our games</h1> 
+        <div class="flexbox">
+            <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
+            <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong">PONG</a>
+        </div>
     </div>
+
     <footer>
 
 
     </footer>
 
 
-    <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -95,15 +77,13 @@ session_start();
       <div class="modal-body">
           <form action="#" method="post">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="unameLogin" required>
+            <input type="text" placeholder="Enter Username" name="uname" required>
         <br>
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="pswLogin" required>
+            <input type="password" placeholder="Enter Password" name="psw" required>
         <br>
             <button type="submit" class="btn ">Login</button>
-            <label>
-              
-            </label>
+           
           </form>
       </div>
       <div class="modal-footer">
@@ -113,7 +93,7 @@ session_start();
       <?php
          $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
          $passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
-      
+     
          if ($nameLogin and  $passLogin  ) {
           $sql = "SELECT * FROM users";
           $result = $conn->query($sql);
@@ -142,46 +122,9 @@ session_start();
       ?>
     </div>
   </div>
-  
 </div>
 </body>
+
+
+
 </html>
-<?php
-   $name = filter_input(INPUT_POST,"uname", FILTER_SANITIZE_STRING);
-   $email = filter_input(INPUT_POST,"Email", FILTER_SANITIZE_STRING);
-   $pass = filter_input(INPUT_POST,"psw", FILTER_SANITIZE_STRING);
-   $passCon = filter_input(INPUT_POST,"pswCon", FILTER_SANITIZE_STRING);
-
-   
-   if ($name and $email and $pass and $passCon ) {
-
-
-switch ($email) {
-   case !strpos($email, "@"):
-      echo "<p>din mail har inget @ tecken</p>";
-       break;
-   case !strpos($email, "."):
-       echo "<p>din mail har ingen punkt</p>";
-       break;
-   
-   default:
-      if (!$pass == $passCon) {
-        echo "<p>Your password dont match</p>";
-      } else {
-        $sql = "INSERT INTO users (mail, user, pass) VALUES ( '$email', '$name', '$pass')";
-        $resultat = $conn->query($sql);
-        if (!$resultat) {
-            die("something went wrong");
-        } else {
-            echo "<p>registered</p>";
-           
-      }
-      $conn->close();
-       break;
-}
-}   
-   }
-
-
-
-   ?>

@@ -3,7 +3,12 @@ body {
     height: 100%;
 }
 
-
+.register {
+    padding-top: 7%;
+}
+input {
+    margin-bottom: 15px;
+}
 
 .kontainer {
     
