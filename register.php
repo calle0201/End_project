@@ -123,7 +123,7 @@ session_start();
              if (!$rad['user'] == $nameLogin ) {
                 continue;
              } else {
-      if (!$rad['pass'] == $passLogin) {
+      if (!$rad['pass'] == password_hash($passLogin, PASSWORD_DEFAULT)) {
           continue;
       } else {
           echo "<p>you are logged in</p>";
@@ -168,7 +168,8 @@ switch ($email) {
       if (!$pass == $passCon) {
         echo "<p>Your password dont match</p>";
       } else {
-        $sql = "INSERT INTO users (mail, user, pass) VALUES ( '$email', '$name', '$pass')";
+        $hashedPass = password_hash($pass,PASSWORD_DEFAULT);
+        $sql = "INSERT INTO users (mail, user, pass) VALUES ( '$email', '$name', '$hashedPass')";
         $resultat = $conn->query($sql);
         if (!$resultat) {
             die("something went wrong");
