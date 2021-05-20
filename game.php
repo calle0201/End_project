@@ -1,3 +1,16 @@
+<?php
+/*
+* en enkel blogg som använder en databas
+* 
+* PHP version 7
+* @category   End project
+* @author     Carl Edenflod <Carl.edenflodhoglund@elev.ga.ntig.se>
+* @license    PHP CC
+*/
+include "./resurser/conn.php";
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="sv">
 <head>
