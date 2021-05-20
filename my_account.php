@@ -17,7 +17,7 @@ session_start();
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Game_site</title>
+    <title>My account</title>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -35,6 +35,7 @@ session_start();
             <ul>
                 <li><a class=" nav" href="./landing_page.php">Homepage</a></li>
                 <?php
+                //checks if logged in else boots to landing page
                  if (!$_SESSION['logged_in'] == true) {
                   header( 'Location:./landing_page.php');
                 } else {
@@ -57,11 +58,14 @@ session_start();
         <p>pong highscore</p>
                  
         <?php
+        //sets a var to the session var "user"
      $user =  $_SESSION['user'];
+     //finds the id of the user that is logged in
        $sql = "SELECT id FROM users WHERE user='$user'";
        $result = $conn->query($sql);
       $userid = $result->fetch_assoc();
      
+      //finds the highscores using the id of the logged in person
       $sql = "SELECT * FROM highscore WHERE id_person='$userid[id]'";
         $result = $conn->query($sql);
             $userscore = $result->fetch_assoc();
@@ -72,11 +76,13 @@ session_start();
         <div class="score">
         <p>breakout highscore</p>
         <?php
+        //sets a var to the session var "user"
            $user =  $_SESSION['user'];
+             //finds the id of the user that is logged in
             $sql = "SELECT id FROM users WHERE user='$user'";
                 $result = $conn->query($sql);
                     $userid = $result->fetch_assoc();
-       
+        //finds the highscores using the id of the logged in person
           $sql = "SELECT * FROM highscore WHERE id_person='$userid[id]'";
             $result = $conn->query($sql);
                 $userscore = $result->fetch_assoc();

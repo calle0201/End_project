@@ -2,7 +2,7 @@ const WINNING_SCORE = 3;
 var canvas;
 var ctx;
 
-
+//class OOP for the player paddels
 class players {
   constructor(paddle, playerScore) {
     this.paddle = 250;
@@ -14,6 +14,7 @@ class players {
 
 
 }
+//OOP stuff for the game logic
 class gameInfo {
   constructor() {
     this.showingWinScreen = false;
@@ -23,19 +24,25 @@ class gameInfo {
     this.ballspeedy = 4;
   }
 }
-
+//making var arrays with the logic and player paddles
 var game = new gameInfo();
 var player1 = new players();
 var player2 = new players();
 
-window.onload = () => { // laddas bara när sidan är ladad kalart
+window.onload = () => { //only loads once the site is finnished loading
+  //finds the canvas by the id
   canvas = document.getElementById('gamecanvas');
   ctx = canvas.getContext('2d');
+
+  //makes the canvas black
   ctx.fillStyle = 'black';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+
+  //function to see if you pressed the mouse
   canvas.addEventListener('mousedown', handleMouseClick);
 
+  //to check where the mouse is on the screen
   canvas.addEventListener('mousemove',
     (evt) => {
       var mousePos = calcuateMousePos(evt);
@@ -43,13 +50,15 @@ window.onload = () => { // laddas bara när sidan är ladad kalart
     });
 
   var FramesPerSecond = 30;
+
+  //the interval everything will move
   setInterval(function () {
     drawEverything();
     moveEverthing();
     console.log(player2.paddle);
   }, 1000 / FramesPerSecond);
 }
-
+//to check where the mouse is on the screen
 function calcuateMousePos(evt) {
   var rect = canvas.getBoundingClientRect()
   var root = document.documentElement;
@@ -61,18 +70,19 @@ function calcuateMousePos(evt) {
   };
 }
 
-
+//resets the ball unless the score is above the winnig score for either players
 function ballReset() {
   if (player1.playerScore >= WINNING_SCORE ||
     player2.playerScore >= WINNING_SCORE) {
     game.showingWinScreen = true;
   }
-
+//reverses the ball speed so it changes direction when its respawned and spawns it in the middle
   game.ballspeedx = -game.ballspeedx;
   game.ballx = canvas.width / 2;
   game.bally = canvas.height / 2;
 }
 
+//ai movement for the second paddle
 function computerMovement() {
   var paddleCenter = player2.paddle + (player2.PADDLE_HEIGHT / 2);
   if (paddleCenter < game.bally - 35) {
@@ -83,7 +93,7 @@ function computerMovement() {
 }
 
 
-
+ //function to see if you pressed the mouse
 function handleMouseClick(evt) {
   if (game.showingWinScreen) {
     player1.playerScore = 0;
@@ -92,19 +102,23 @@ function handleMouseClick(evt) {
   }
 }
 
+//moves everything every set interval
 function moveEverthing() { //gör så saker rör sig
   if (game.showingWinScreen) {
     return;
   }
-
+//the call for the ai to move
   computerMovement();
 
+
+  //changes the location of the ball depending on the speed of the ball
   game.ballx = game.ballx + game.ballspeedx;
   game.bally = game.bally + game.ballspeedy;
+  //if the ball hits the cealing bounce back
   if (game.bally < 0) {
     game.ballspeedy = -game.ballspeedy;
   }
-
+//check if the ball hit the paddle or not and give score or not
   if (game.ballx < 0) {
     if (game.bally > player1.paddle &&
       game.bally < player1.paddle + player1.PADDLE_HEIGHT) {
@@ -114,6 +128,7 @@ function moveEverthing() { //gör så saker rör sig
       game.ballspeedy = deltay * 0.35;
     } else {
       player2.playerScore += 1;
+      //call for ball reset
       ballReset();
     }
   }
@@ -134,7 +149,7 @@ function moveEverthing() { //gör så saker rör sig
   }
 }
 
-
+//draws all of the stuff on the canvas
 function drawEverything() {
 
   if (game.showingWinScreen) {
@@ -172,7 +187,7 @@ function drawEverything() {
   ctx.fillText(player2.playerScore, canvas.width - 150, 100);
 
 }
-
+//gives the circle its color and draws it
 function colorCircle(centerX, centerY, radius, drawColor) {
   ctx.fillStyle = drawColor;
   ctx.beginPath();

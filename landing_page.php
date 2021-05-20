@@ -35,8 +35,7 @@ session_start();
             <ul>
                 <li><a class="active nav" href="#">Homepage</a></li>
                 <?php
-
-                
+                //checks if logged in if not show login and register
                  if (!$_SESSION['logged_in'] == true) {
                 ?> 
                 <li ><a data-toggle="modal" data-target="#login" class="nav" href="">Login</a></li>
@@ -56,6 +55,7 @@ session_start();
 
     <div class="kontainer">
         <h1>Our games</h1> 
+        <!-- the games on the site -->
         <div class="flexbox">
             <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
             <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong"></a>
@@ -76,6 +76,7 @@ session_start();
       
       </div>
       <div class="modal-body">
+        <!-- form to login -->
           <form action="#" method="post">
             <label for="unameLogin"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="unameLogin" required>
@@ -92,33 +93,36 @@ session_start();
        
       </div>
       <?php
-         $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
-         $passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
-               
-         if ($nameLogin and  $passLogin  ) {
-          $sql = "SELECT * FROM users";
-          $result = $conn->query($sql);
-          
-          
-          while ($rad = $result->fetch_assoc()) 
-            {
-              if (!$rad['user'] == $nameLogin ) 
-              {
-                continue;
-              } 
-                else 
-              {
-      if (!$rad['pass'] == password_hash($passLogin, PASSWORD_DEFAULT))
-      {
-        continue;
+//sanites the login inputs
+$nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
+$passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
+//makes sure both name and pass is filled in
+if ($nameLogin and  $passLogin  ) {
+  //gets all info from the DB
+ $sql = "SELECT * FROM users";
+ $result = $conn->query($sql);
+ 
+ 
+ while ($rad = $result->fetch_assoc()) {
+   //checks if the username exists
+    if (!$rad['user'] == $nameLogin ) {
+       continue;
+    } else {
+      //and then checks if the pass is correct to the username
+if (!$rad['pass'] == password_hash($passLogin, PASSWORD_DEFAULT)) {
+ continue;
       } 
       else 
       {
-        echo "<p>you are logged in</p>";
-        $_SESSION['logged_in'] = true;
-        $_SESSION['user'] = $nameLogin;
-        header("Refresh:0");
-        break;
+//you are now logged in 
+echo "<p>you are logged in</p>";
+//changes the session to logged in
+$_SESSION['logged_in'] = true;
+//changes the session var to log what user is logged in
+$_SESSION['user'] = $nameLogin;
+//refresh site so you can update some stuff
+header("Refresh:0");
+break;
       }
     }
   }
