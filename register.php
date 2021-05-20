@@ -32,21 +32,21 @@ session_start();
 
         <nav>
             <ul>
-                <li><a class=" nav" href="./landing_page.html">Homepage</a></li>
+                <li><a class=" nav" href="./landing_page.php">Homepage</a></li>
                 
-                <li hidden id="logout"><a class="nav" href="#">logout</a></li>
+                
                 <?php
-                $_SESSION['logged_in'] = false;
                
-                if ($_SESSION['logged_in'] == true) {
+               
+                if (!$_SESSION['logged_in'] == true) {
                 ?> 
-                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">login</a></li>
-                <li  id="register"><a class="active nav" href="">register</a></li> 
+                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">Login</a></li>
+                <li  id="register"><a class="active nav" href="">Register</a></li> 
                 <?php
                 } else {
                   ?>  
-                <li  id="logout"><a class="nav" href="logout.php">logout</a></li>
-                <li id="account" ><a class="nav"  href="">my account</a></li>
+                <li  id="logout"><a class="nav" href="logout.php">Logout</a></li>
+                <li id="account" ><a class="nav"  href="./my_account.php">My account</a></li>
                 <?php
                 }
                 ?>
@@ -78,6 +78,56 @@ session_start();
           
           </form>
           </div>
+          <?php
+   $name = filter_input(INPUT_POST,"uname", FILTER_SANITIZE_STRING);
+   $email = filter_input(INPUT_POST,"Email", FILTER_SANITIZE_STRING);
+   $pass = filter_input(INPUT_POST,"psw", FILTER_SANITIZE_STRING);
+   $passCon = filter_input(INPUT_POST,"pswCon", FILTER_SANITIZE_STRING);
+
+   
+   if ($name and $email and $pass and $passCon ) {
+
+
+switch ($email) {
+   case !strpos($email, "@"):
+      echo "<p>din mail har inget @ tecken</p>";
+       break;
+   case !strpos($email, "."):
+       echo "<p>din mail har ingen punkt</p>";
+       break;
+   
+   default:
+      if (!$pass == $passCon) {
+        echo "<p>Your password dont match</p>";
+      } else {
+        $hashedPass = password_hash($pass,PASSWORD_DEFAULT);
+        $sql_user = "SELECT * FROM users WHERE user='$name'";
+        $res_u = $conn->query($sql_user);
+        if (mysqli_num_rows($res_u) > 0) {
+          echo "<p>användarnamn finns redan</p>";
+        } else { 
+          $sql = "INSERT INTO users (mail, user, pass) VALUES ( '$email', '$name', '$hashedPass')";
+          
+          $register = $conn->query($sql);
+          $sql = "SELECT id FROM users WHERE user='$name'";
+          $result = $conn->query($sql);
+         $userid = $result->fetch_assoc();
+          $sql = "INSERT INTO highscore (	id_person,pong_highscore,breakout_highscore) VALUES ( '$userid[id]', '0', '0')";
+          $conn->query($sql);
+          if (!$register) {
+              die("something went wrong");
+          } else {
+              echo "<p>registered</p>";
+             
+        }}
+       
+      $conn->close();
+       break;
+}
+}   
+   }
+
+   ?>
     </div>
     <footer>
 
@@ -128,7 +178,8 @@ session_start();
       } else {
           echo "<p>you are logged in</p>";
           $_SESSION['logged_in'] = true;
-          var_dump($_SESSION['logged_in']);
+          $_SESSION['user'] = $nameLogin;
+          header("Refresh:0");
           break;
       }
       
@@ -146,43 +197,3 @@ session_start();
 </div>
 </body>
 </html>
-<?php
-   $name = filter_input(INPUT_POST,"uname", FILTER_SANITIZE_STRING);
-   $email = filter_input(INPUT_POST,"Email", FILTER_SANITIZE_STRING);
-   $pass = filter_input(INPUT_POST,"psw", FILTER_SANITIZE_STRING);
-   $passCon = filter_input(INPUT_POST,"pswCon", FILTER_SANITIZE_STRING);
-
-   
-   if ($name and $email and $pass and $passCon ) {
-
-
-switch ($email) {
-   case !strpos($email, "@"):
-      echo "<p>din mail har inget @ tecken</p>";
-       break;
-   case !strpos($email, "."):
-       echo "<p>din mail har ingen punkt</p>";
-       break;
-   
-   default:
-      if (!$pass == $passCon) {
-        echo "<p>Your password dont match</p>";
-      } else {
-        $hashedPass = password_hash($pass,PASSWORD_DEFAULT);
-        $sql = "INSERT INTO users (mail, user, pass) VALUES ( '$email', '$name', '$hashedPass')";
-        $resultat = $conn->query($sql);
-        if (!$resultat) {
-            die("something went wrong");
-        } else {
-            echo "<p>registered</p>";
-           
-      }
-      $conn->close();
-       break;
-}
-}   
-   }
-
-
-
-   ?>

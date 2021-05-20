@@ -35,16 +35,17 @@ session_start();
             <ul>
                 <li><a class="active nav" href="#">Homepage</a></li>
                 <?php
-                 $_SESSION['logged_in'] = false;
-                 if ($_SESSION['logged_in'] == true) {
+
+                
+                 if (!$_SESSION['logged_in'] == true) {
                 ?> 
-                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">login</a></li>
-                <li  id="register"><a class="active nav" href="">register</a></li> 
+                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">Login</a></li>
+                <li  id="register"><a class=" nav" href="./register.php">Register</a></li> 
                 <?php
                 } else {
                   ?>  
-                <li  id="logout"><a class="nav" href="logout.php">logout</a></li>
-                <li id="account" ><a class="nav"  href="">my account</a></li>
+                <li  id="logout"><a class="nav" href="logout.php">Logout</a></li>
+                <li id="account" ><a class="nav"  href="./my_account.php">My account</a></li>
                 <?php
                 }
                 ?>
@@ -57,7 +58,7 @@ session_start();
         <h1>Our games</h1> 
         <div class="flexbox">
             <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
-            <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong">PONG</a>
+            <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong"></a>
         </div>
     </div>
 
@@ -76,11 +77,11 @@ session_start();
       </div>
       <div class="modal-body">
           <form action="#" method="post">
-            <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" required>
+            <label for="unameLogin"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="unameLogin" required>
         <br>
-            <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <label for="pswLogin"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="pswLogin" required>
         <br>
             <button type="submit" class="btn ">Login</button>
            
@@ -93,32 +94,35 @@ session_start();
       <?php
          $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
          $passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
-     
+               
          if ($nameLogin and  $passLogin  ) {
           $sql = "SELECT * FROM users";
           $result = $conn->query($sql);
           
           
-          while ($rad = $result->fetch_assoc()) {
-             if (!$rad['user'] == $nameLogin ) {
+          while ($rad = $result->fetch_assoc()) 
+            {
+              if (!$rad['user'] == $nameLogin ) 
+              {
                 continue;
-             } else {
-      if (!$rad['pass'] == $passLogin) {
-          continue;
-      } else {
-          echo "<p>you are logged in</p>";
-          $_SESSION['logged_in'] = true;
-          var_dump($_SESSION['logged_in']);
-          break;
+              } 
+                else 
+              {
+      if (!$rad['pass'] == password_hash($passLogin, PASSWORD_DEFAULT))
+      {
+        continue;
+      } 
+      else 
+      {
+        echo "<p>you are logged in</p>";
+        $_SESSION['logged_in'] = true;
+        $_SESSION['user'] = $nameLogin;
+        header("Refresh:0");
+        break;
       }
-      
-               
-             }
-             
-          
-          }
-      
-         }
+    }
+  }
+}
       ?>
     </div>
   </div>
