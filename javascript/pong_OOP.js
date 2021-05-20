@@ -46,7 +46,7 @@ window.onload = () => { //only loads once the site is finnished loading
   canvas.addEventListener('mousemove',
     (evt) => {
       var mousePos = calcuateMousePos(evt);
-      player1.paddle = mousePos.y - (player1.PADDLE_HEIGHT - 125);
+      player1.paddle = mousePos.y - ((player1.PADDLE_HEIGHT/2) + 150 );
     });
 
   var FramesPerSecond = 30;
