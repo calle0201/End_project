@@ -58,12 +58,7 @@ session_start();
         <!-- the games on the site -->
         <div class="flexbox">
             <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
-<<<<<<< HEAD
-            <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong"> </a>
-            <p class="game">PONG</p>
-=======
             <a href="./game.php"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong"></a>
->>>>>>> aa73c0c387f9533f2716d42af027cd4a0b34ea10
         </div>
     </div>
 

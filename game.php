@@ -31,7 +31,7 @@ session_start();
 
         <nav>
             <ul>
-                <li><a class=" nav" href="#">Homepage</a></li>
+                <li><a class=" nav" href="./landing_page.php">Homepage</a></li>
                    
                 
                 <?php
