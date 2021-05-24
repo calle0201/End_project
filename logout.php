@@ -1,8 +1,9 @@
 <?php
+//start session
 session_start();
-unset($_SESSION['logged_in']);
-session_destroy();
-session_write_close();
-header('Location: landing_page.php');
-exit;
+// change logged in to not logged in
+$_SESSION['logged_in'] = false;
+//unsets users name
+unset($_SESSION['user']);
+header( 'Location:./landing_page.php');
 ?>

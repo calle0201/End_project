@@ -16,12 +16,24 @@ input {
     
     background: rgb(22, 17, 17);
     color: rgb(212, 212, 212);
+<<<<<<< HEAD
     font-size: 50px;
     height: 1000px;
+=======
+    
+    height: 1264px;
+    text-align: center;
+>>>>>>> aa73c0c387f9533f2716d42af027cd4a0b34ea10
 
 }
 .kontainer h1 {
     font-size: 50px;
+    text-align: center;
+    margin: 0px;
+    padding: 20px;
+}
+.kontainer h2 {
+    font-size: 40px;
     text-align: center;
     margin: 0px;
     padding: 20px;
@@ -31,6 +43,7 @@ input {
     flex-wrap: wrap;
     display: flex;
     justify-content: center;
+    
 }
 
 .kontainer img {
@@ -39,4 +52,11 @@ padding: 5px;
 width: 600px;
 height: 90%;
 margin: 10px;
+}
+.flexbox .score {
+    text-align: center;
+    padding: 5px;
+    background: rgba(12, 8, 8, 0.452);
+    margin: 10px 40px;
+    font-size: 30px;
 }

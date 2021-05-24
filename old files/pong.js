@@ -10,7 +10,7 @@
 		var player2Score = 0;
 		const WINNING_SCORE = 3;
 		
-		var game.showingWinScreen = false;
+		var showingWinScreen = false;
 		
 		var paddle1y = 250;
 	 var paddle2y = 250;
@@ -79,7 +79,7 @@
 		}
 		
 		function moveEverthing() { //gör så saker rör sig
-			if(game.showingWinScreen) {
+			if(showingWinScreen) {
 					return;
 			}
 		
@@ -122,7 +122,7 @@
 
 		function drawEverything() { 
 					
-		if(game.showingWinScreen) {
+		if(showingWinScreen) {
 					if(player1Score >= WINNING_SCORE) {
 					ctx.fillText("player one wins", 350,280);
 					}else if(player2Score >= WINNING_SCORE) {
