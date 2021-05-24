@@ -57,7 +57,8 @@ session_start();
         <h1>Our games</h1> 
         <div class="flexbox">
             <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
-            <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong">PONG</a>
+            <a href="./game.html"><img src="./img/steven-skerritt-vljZeX-WdQs-unsplash_large.jpg" alt="pong"> </a>
+            <p class="game">PONG</p>
         </div>
     </div>
 

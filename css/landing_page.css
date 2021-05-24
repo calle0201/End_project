@@ -9,12 +9,14 @@ body {
 input {
     margin-bottom: 15px;
 }
-
+.kontainer .game {
+    font-size: 50px;
+}
 .kontainer {
     
     background: rgb(22, 17, 17);
     color: rgb(212, 212, 212);
-    
+    font-size: 50px;
     height: 1000px;
 
 }
