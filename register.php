@@ -10,7 +10,7 @@
 include "./resurser/conn.php";
 include "./oop.php";
 //$check = new Validator();
-session_start();
+//session_start();
 
 
 //if (isset($_POST["login"])) {
@@ -18,7 +18,7 @@ session_start();
 //  $check->login();
   
 //}
-
+$_SESSION['logged_in'];
 ?>
 
 <!DOCTYPE html>

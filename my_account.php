@@ -46,7 +46,7 @@ if (isset($_POST["change_uname"])) {
                 <?php
                 //checks if logged in else boots to landing page
                  if (!$_SESSION['logged_in'] == true) {
-                  header( 'Location:./landing_page.php');
+                 // header( 'Location:./landing_page.php');
                 } else {
                   ?>  
                 <li  id="logout"><a class="nav" href="logout.php">Logout</a></li>

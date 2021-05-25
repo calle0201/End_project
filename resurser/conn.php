@@ -15,4 +15,5 @@ if ($conn->connect_error) {
 } else {
    
 }
+session_start();
 ?>

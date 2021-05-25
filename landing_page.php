@@ -8,7 +8,14 @@
 * @license    PHP CC
 */
 include "./resurser/conn.php";
-session_start();
+include "./oop.php";
+$check = new Validator();
+
+if ($_POST["action"] == "Login") {
+  $check->set($_POST, $_SESSION['user'], $conn);
+  $check->login();
+  
+};
 ?>
 
 
@@ -55,6 +62,7 @@ session_start();
 
     <div class="kontainer">
         <h1>Our games</h1> 
+        <?php $check->showErrors('login'); ?>
         <!-- the games on the site -->
         <div class="flexbox">
             <a href=""><img src="./img/jonathan-petersson-a6N685qLsHQ-unsplash_large.jpg" alt="breakout"></a>
@@ -84,7 +92,9 @@ session_start();
             <label for="pswLogin"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="pswLogin" required>
         <br>
-            <button type="submit" class="btn ">Login</button>
+        
+        <br>
+            <button type="submit"  name="action" value="Login" class="btn ">Login</button>
            
           </form>
       </div>
@@ -93,40 +103,7 @@ session_start();
        
       </div>
       <?php
-//sanites the login inputs
-$nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
-$passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
-//makes sure both name and pass is filled in
-if ($nameLogin and  $passLogin  ) {
-  //gets all info from the DB
- $sql = "SELECT * FROM users";
- $result = $conn->query($sql);
- 
- 
- while ($rad = $result->fetch_assoc()) {
-   //checks if the username exists
-    if (!$rad['user'] == $nameLogin ) {
-       continue;
-    } else {
-      //and then checks if the pass is correct to the username
-if (!$rad['pass'] == password_hash($passLogin, PASSWORD_DEFAULT)) {
- continue;
-      } 
-      else 
-      {
-//you are now logged in 
-echo "<p>you are logged in</p>";
-//changes the session to logged in
-$_SESSION['logged_in'] = true;
-//changes the session var to log what user is logged in
-$_SESSION['user'] = $nameLogin;
-//refresh site so you can update some stuff
-header("Refresh:0");
-break;
-      }
-    }
-  }
-}
+
       ?>
     </div>
   </div>
