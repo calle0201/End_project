@@ -8,7 +8,16 @@
 * @license    PHP CC
 */
 include "./resurser/conn.php";
-session_start();
+include "./oop.php";
+$check = new Validator();
+//session_start();
+
+
+if (isset($_POST["change_uname"])) {
+ $check->set($_POST, $_SESSION['user'], $conn);
+ $check->changeName();
+  
+}
 ?>
 
 
@@ -52,6 +61,18 @@ session_start();
 
     <div class="kontainer">
         <h1>Hello <?php echo $_SESSION['user'];?></h1> 
+        <div>
+        <h2>Account settings</h2>
+        <form action="#" method="post">
+        <label for="unameChange"><b>Username</b></label>
+            <br>
+            <input type="text" placeholder=" <?php echo $_SESSION['user'] ?>" name="unameChange" >
+            <br>
+            <?php $check->showErrors('unameChange'); ?>
+            <br>
+            <button type="submit" name="change_uname" class="btn ">Change username</button>
+        </form>
+        </div>
         <h2>highscores</h2>
     <div class="flexbox">
         <div class="score">

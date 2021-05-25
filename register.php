@@ -8,7 +8,17 @@
 * @license    PHP CC
 */
 include "./resurser/conn.php";
+include "./oop.php";
+//$check = new Validator();
 session_start();
+
+
+//if (isset($_POST["login"])) {
+//  $check->set($_POST);
+//  $check->login();
+  
+//}
+
 ?>
 
 <!DOCTYPE html>
@@ -154,13 +164,13 @@ switch ($email) {
       <div class="modal-body">
          <!-- form to login -->
           <form action="#" method="post">
-            <label for="uname"><b>Username</b></label>
+            <label for="unameLogin"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="unameLogin" required>
         <br>
-            <label for="psw"><b>Password</b></label>
+            <label for="pswLogin"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="pswLogin" required>
         <br>
-            <button type="submit" class="btn ">Login</button>
+            <button type="submit" name="login" class="btn ">Login</button>
             <label>
               
             </label>
