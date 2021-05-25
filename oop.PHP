@@ -1,24 +1,23 @@
 <?php
+
 session_start();
+
 class Validator
 {
     // Properties
     private $errors = [];
     private $user;
-    private $sql;
     private $data;
     private $conn;
-    public function set($postdata, $usernow, $connNow) {
+        public function set($postdata, $usernow, $connNow) {
         $this->data = $postdata;
         $this->user = $usernow;
         $this->conn = $connNow;
     }
     public function login() {
          //sanites the login inputs
-         
          $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
          $passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
-         
       //makes sure both name and pass is filled in
          if ($nameLogin and  $passLogin  ) {
 
@@ -52,13 +51,7 @@ class Validator
        } else {
         $this->errors['username'] = "your username is not in our database";
        }
-       
-       
-          
       }
-             
-         
-    }
     public function changeName() {
         $name = $this->data['unameChange'];
         $sql = "SELECT * FROM users WHERE user='$this->data'";
@@ -70,7 +63,6 @@ class Validator
     } else { 
        
         $sql = "UPDATE users SET user='$name' WHERE user='$this->user'";
-        
      $resu =  $this->conn->query($sql);
      var_dump($resu);
     }
