@@ -8,7 +8,14 @@
 * @license    PHP CC
 */
 include "./resurser/conn.php";
-session_start();
+include "./oop.php";
+$check = new Validator();
+
+if ($_POST["action"] == "Login") {
+  $check->set($_POST, $_SESSION['user'], $conn);
+  $check->login();
+  
+};
 ?>
 
 <!DOCTYPE html>
@@ -70,62 +77,24 @@ session_start();
       </div>
       <div class="modal-body">
          <!-- form to login -->
-          <form action="#" method="post">
-            <label for="uname"><b>Username</b></label>
+         <form action="#" method="post">
+            <label for="unameLogin"><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="unameLogin" required>
         <br>
-            <label for="psw"><b>Password</b></label>
+            <label for="pswLogin"><b>Password</b></label>
             <input type="password" placeholder="Enter Password" name="pswLogin" required>
         <br>
-            <button type="submit" class="btn ">Login</button>
-            <label>
-              
-            </label>
+        
+        <br>
+            <button type="submit"  name="action" value="Login" class="btn ">Login</button>
+           
           </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
        
       </div>
-      <?php
-      //sanites the login inputs
-         $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
-         $passLogin = filter_input(INPUT_POST,"pswLogin", FILTER_SANITIZE_STRING);
-      //makes sure both name and pass is filled in
-         if ($nameLogin and  $passLogin  ) {
-           //gets all info from the DB
-          $sql = "SELECT * FROM users";
-          $result = $conn->query($sql);
-          
-          
-          while ($rad = $result->fetch_assoc()) {
-            //checks if the username exists
-             if (!$rad['user'] == $nameLogin ) {
-                continue;
-             } else {
-               //and then checks if the pass is correct to the username
-      if (!$rad['pass'] == password_hash($passLogin, PASSWORD_DEFAULT)) {
-          continue;
-      } else {
-        //you are now logged in 
-          echo "<p>you are logged in</p>";
-          //changes the session to logged in
-          $_SESSION['logged_in'] = true;
-          //changes the session var to log what user is logged in
-          $_SESSION['user'] = $nameLogin;
-          //refresh site so you can update som
-          header("Refresh:0");
-          break;
-      }
-      
-               
-             }
-             
-          
-          }
-      
-         }
-      ?>
+     
     </div>
   </div>
   
