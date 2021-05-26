@@ -15,7 +15,12 @@ $check = new Validator();
 
 if (isset($_POST["change_uname"])) {
  $check->set($_POST, $_SESSION['user'], $conn);
- $check->changeName();
+$check->changeName();
+  
+}
+if (isset($_POST["delete"])) {
+ $check->set($_POST, $_SESSION['user'], $conn);
+ $check->deleteAccount();
   
 }
 ?>
@@ -72,43 +77,21 @@ if (isset($_POST["change_uname"])) {
             <br>
             <button type="submit" name="change_uname" class="btn ">Change username</button>
         </form>
+            <button data-toggle="modal" data-target="#delete" style="margin: 10px 0px" class="btn">DELETE Account</button>
         </div>
         <h2>highscores</h2>
     <div class="flexbox">
         <div class="score">
-        <p>pong highscore</p>
-                 
+        <p>pong highscore</p>   
         <?php
-        //sets a var to the session var "user"
-     $user =  $_SESSION['user'];
-     //finds the id of the user that is logged in
-       $sql = "SELECT id FROM users WHERE user='$user'";
-       $result = $conn->query($sql);
-      $userid = $result->fetch_assoc();
-     
-      //finds the highscores using the id of the logged in person
-      $sql = "SELECT * FROM highscore WHERE id_person='$userid[id]'";
-        $result = $conn->query($sql);
-            $userscore = $result->fetch_assoc();
-
-      echo "<p>$userscore[pong_highscore]</p>";
+    $check->getScore("pong_highscore", $conn);
    ?>
         </div>
         <div class="score">
         <p>breakout highscore</p>
         <?php
-        //sets a var to the session var "user"
-           $user =  $_SESSION['user'];
-             //finds the id of the user that is logged in
-            $sql = "SELECT id FROM users WHERE user='$user'";
-                $result = $conn->query($sql);
-                    $userid = $result->fetch_assoc();
-        //finds the highscores using the id of the logged in person
-          $sql = "SELECT * FROM highscore WHERE id_person='$userid[id]'";
-            $result = $conn->query($sql);
-                $userscore = $result->fetch_assoc();
-
-        echo "<p>$userscore[breakout_highscore]</p>";
+      $check->getScore("breakout_highscore", $conn);
+       
         ?>
         </div>
 
@@ -125,5 +108,30 @@ if (isset($_POST["change_uname"])) {
 </body>
 
 
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Delete account</h5>
+      
+      </div>
+      <div class="modal-body">
+        <!-- form to login -->
+          <form action="#" method="post">
+            <label for="delete"><b>Are you sure you want to delete your account? <br>
+        This is permanent and cant be restored.</b></label>
+            <button type="submit"  name="delete" value="Login" class="btn btn-success">yes</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+          </form>
+      </div>
+      <div class="modal-footer">
+        
+       
+      </div>
+      <?php
 
+      ?>
+    </div>
+  </div>
+</div>
 </html>

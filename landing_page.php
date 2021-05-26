@@ -50,8 +50,8 @@ if ($_POST["action"] == "Login") {
                 <?php
                 } else {
                   ?>  
-                <li  id="logout"><a class="nav" href="logout.php">Logout</a></li>
-                <li id="account" ><a class="nav"  href="./my_account.php">My account</a></li>
+                <li  ><a class="nav" href="logout.php">Logout</a></li>
+                <li  ><a class="nav"  href="./my_account.php">My account</a></li>
                 <?php
                 }
                 ?>
