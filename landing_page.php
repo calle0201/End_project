@@ -55,6 +55,7 @@ if ($_POST["action"] == "Login") {
                 <?php
                 }
                 ?>
+                <li><a class=" nav" href="./time.php">Time</a></li>
             </ul>
         </nav>
     </header>
@@ -102,9 +103,7 @@ if ($_POST["action"] == "Login") {
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
        
       </div>
-      <?php
-
-      ?>
+      
     </div>
   </div>
 </div>

@@ -20,6 +20,15 @@ ul {
     text-decoration: none;
     font-size: 25px;
 }
+  .nav:hover {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    background-color: rgb(20, 15, 15);
+}
 
 .active {
     background-color: rgb(20, 15, 15);
