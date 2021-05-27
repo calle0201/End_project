@@ -47,26 +47,7 @@ $_SESSION['logged_in'];
 
         <nav>
             <ul>
-                <li><a class=" nav" href="./landing_page.php">Homepage</a></li>
-                
-                
-                <?php
-               
-               //checks if logged in if not show login and register
-                if (!$_SESSION['logged_in'] == true) {
-                ?> 
-                <li ><a data-toggle="modal" data-target="#login" class="nav" href="">Login</a></li>
-                <li  id="register"><a class="active nav" href="">Register</a></li> 
-                <?php
-                } else {
-                  ?>  
-                <li  id="logout"><a class="nav" href="logout.php">Logout</a></li>
-                <li id="account" ><a class="nav"  href="./my_account.php">My account</a></li>
-                <?php
-                }
-                ?>
-                <li><a class=" nav" href="./time.php">Time</a></li>
-                <li><a class=" nav" href="./api.php">API</a></li>
+            <?php $check->checkLogin('register')?>
             </ul>
         </nav>
     </header>

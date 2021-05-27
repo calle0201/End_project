@@ -47,20 +47,7 @@ if (isset($_POST["delete"])) {
 
         <nav>
             <ul>
-                <li><a class=" nav" href="./landing_page.php">Homepage</a></li>
-                <?php
-                //checks if logged in else boots to landing page
-                 if (!$_SESSION['logged_in'] == true) {
-                 // header( 'Location:./landing_page.php');
-                } else {
-                  ?>  
-                <li  id="logout"><a class="nav" href="logout.php">Logout</a></li>
-                <li id="account" ><a class="active nav"  href="#">My account</a></li>
-                <?php
-                }
-                ?>
-                <li><a class=" nav" href="./time.php">Time</a></li>
-                <li><a class=" nav" href="./api.php">API</a></li>
+            <?php $check->checkLogin('myAccount')?>
             </ul>
         </nav>
     </header>

@@ -38,23 +38,7 @@ if ($_POST["action"] == "Login") {
     <header>
         <nav>
             <ul>
-                <li><a class=" nav" href="./landing_page.php">Homepage</a></li>
-                <?php
-                //checks if logged in if not show login and register
-                 if (!$_SESSION['logged_in'] == true) {
-                ?> 
-                    <li ><a data-toggle="modal" data-target="#login" class="nav" href="">Login</a></li>
-                    <li  id="register"><a class=" nav" href="./register.php">Register</a></li> 
-                <?php
-            } else {
-                  ?>  
-                    <li  ><a class="nav" href="logout.php">Logout</a></li>
-                    <li  ><a class="nav"  href="./my_account.php">My account</a></li>
-                <?php
-            }
-                ?>
-                <li><a class=" nav" href="./time.php">Time</a></li>
-                <li><a class="active nav" href="./api.php">API</a></li>
+            <?php $check->checkLogin('api')?>
             </ul>
         </nav>
     </header>

@@ -14,7 +14,240 @@ class Validator
         $this->user = $usernow;
         $this->conn = $connNow;
     }
-    
+    public function checkLogin($siteCheck) {
+        switch ($siteCheck) {
+            case 'landing': 
+            
+                    echo "<li><a class=\"active nav\" href=\"#\">Homepage</a></li>";
+                //checks if logged in if not show login and register
+                if (!$_SESSION['logged_in'] == true) {
+           
+                    echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+           
+                } else {
+            
+                    echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"nav\"  href=\"./my_account.php\">My account</a></li>";
+            
+                }
+          
+                    echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+                    echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            case 'myAccount':
+                    echo "<li><a class=\" nav\" href=\"./landing_page.php\">Homepage</a></li>";
+          
+                //checks if logged in if not show login and register
+                if (!$_SESSION['logged_in'] == true) {
+           
+                    echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+            
+                } else {
+                    echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"active nav\"  href=\"./my_account.php\">My account</a></li>";
+           
+                }
+          
+                echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+                echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            case 'time':
+                echo "<li><a class=\" nav\" href=\"./landing_page.php\">Homepage</a></li>";
+          
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                   echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+               
+                } else {
+                
+                   echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"nav\"  href=\"./my_account.php\">My account</a></li>";
+                
+                }
+              
+                echo "<li><a class=\"active nav\" href=\"./time.php\">Time</a></li>";
+                echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                    break;
+                case 'myAccount':
+                    echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+              
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                  echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+                
+                } else {
+             
+                    echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"active nav\"  href=\"./my_account.php\">My account</a></li>";
+               
+                }
+              
+              echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+              echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            case 'register':
+                echo "<li><a class=\" nav\" href=\"./landing_page.php\">Homepage</a></li>";
+          
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                   echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\"active nav\" href=\"./register.php\">Register</a></li>" ;
+               
+                } else {
+                
+                   echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"nav\"  href=\"./my_account.php\">My account</a></li>";
+                
+                }
+              
+                echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+                echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                    break;
+                case 'myAccount':
+                    echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+              
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                  echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+                
+                } else {
+             
+                    echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"active nav\"  href=\"./my_account.php\">My account</a></li>";
+               
+                }
+              
+              echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+              echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            case 'api':
+                echo "<li><a class=\" nav\" href=\"./landing_page.php\">Homepage</a></li>";
+          
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                   echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+               
+                } else {
+                
+                   echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"nav\"  href=\"./my_account.php\">My account</a></li>";
+                
+                }
+              
+                echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+                echo "<li><a class=\"active nav\" href=\"./api.php\">API</a></li>";
+                    break;
+                case 'myAccount':
+                    echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+              
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                  echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+                
+                } else {
+             
+                    echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"active nav\"  href=\"./my_account.php\">My account</a></li>";
+               
+                }
+              
+              echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+              echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            case '':
+                echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+          
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                   echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+               
+                } else {
+                
+                   echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"nav\"  href=\"./my_account.php\">My account</a></li>";
+                
+                }
+              
+                echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+                echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                    break;
+                case 'myAccount':
+                    echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+              
+                //checks if logged in if not show login and register
+                 if (!$_SESSION['logged_in'] == true) {
+               
+                  echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                    echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+                
+                } else {
+             
+                    echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                    echo "<li><a class=\"active nav\"  href=\"./my_account.php\">My account</a></li>";
+               
+                }
+              
+              echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+              echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            
+            default:
+            echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+          
+            //checks if logged in if not show login and register
+             if (!$_SESSION['logged_in'] == true) {
+           
+               echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                echo "<li><a class=\"nav\" href=\"./register.php\">Register</a></li>" ;
+           
+            } else {
+            
+               echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                echo "<li><a class=\"nav\"  href=\"./my_account.php\">My account</a></li>";
+            
+            }
+          
+            echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+            echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+            case 'myAccount':
+                echo "<li><a class=\" nav\" href=\"#\">Homepage</a></li>";
+          
+            //checks if logged in if not show login and register
+             if (!$_SESSION['logged_in'] == true) {
+           
+              echo '<li><a data-toggle="modal" data-target="#login" class="nav" href="#">Login</a></li>';
+                echo "<li><a class=\" nav\" href=\"./register.php\">Register</a></li>" ;
+            
+            } else {
+         
+                echo "<li><a class=\"nav\" href=\"logout.php\">Logout</a></li>";
+                echo "<li><a class=\"active nav\"  href=\"./my_account.php\">My account</a></li>";
+           
+            }
+          
+          echo "<li><a class=\"nav\" href=\"./time.php\">Time</a></li>";
+          echo "<li><a class=\"nav\" href=\"./api.php\">API</a></li>";
+                break;
+        }
+        
+        
+    }
     public function login() {
          //sanites the login inputs
          $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
