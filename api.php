@@ -10,7 +10,11 @@
 include "./resurser/conn.php";
 include "./oop.php";
 $check = new Validator();
-
+if ($_POST["action"] == "Login") {
+  $check->set($_POST, $_SESSION['user'], $conn);
+  $check->login();
+  
+};
 
 ?>
 

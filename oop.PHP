@@ -14,6 +14,7 @@ class Validator
         $this->user = $usernow;
         $this->conn = $connNow;
     }
+    
     public function login() {
          //sanites the login inputs
          $nameLogin = filter_input(INPUT_POST,"unameLogin", FILTER_SANITIZE_STRING);
@@ -99,9 +100,9 @@ if ($name and $email and $pass and $passCon ) {
         //inserts a new user in the highscore DB with the same id as the new account
         $base = "0";
          $sql = "INSERT INTO highscore (person_id,pong_highscore,	breakout_highscore) VALUES ( '$userid[id]', '$base', '$base')";
-         var_dump($sql);
+        
         $resu =  $this->conn->query($sql);
-        var_dump($resu);
+       
         if (!$register) {
            die("something went wrong");
         } else {
