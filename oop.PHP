@@ -169,7 +169,38 @@ $this->conn->query($sql);
 
       echo "<p>$userscore[$score]</p>";
     }
-
+public function apiCall($type, $moneyType, $moneystring) {
+            // Url TO API
+            $url = "https://api.coindesk.com/v1/bpi/currentprice/BTC.json";
+             // Make a calll
+            $json = file_get_contents($url);
+    
+            // decode the json
+            $jsonData = json_decode($json);
+           
+            
+    if (!empty($type) AND empty($moneyType) AND empty($moneystring) AND empty($desc)) {
+ 
+        
+        
+        $money = $jsonData->$type;
+    
+        
+        echo "<p class=\"crypto\">$money</p>" . " ";
+    } elseif (!empty($type)  AND !empty($moneyType)  AND empty($moneystring) AND empty($desc) ) {
+          $money = $jsonData->$type->$moneyType;
+          
+    
+          echo "<p class=\"crypto\">$money</p>" . " ";
+    } elseif (!empty($type) AND !empty($moneyType) AND !empty($moneystring) AND empty($desc) ) { 
+        $money = $jsonData->$type->$moneyType->$moneystring;
+     
+          echo "<p class=\"crypto\">$money</p>" . " ";
+    } 
+     
+          
+           
+}
 
     public function showErrors($type)
     {

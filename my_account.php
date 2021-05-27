@@ -59,6 +59,8 @@ if (isset($_POST["delete"])) {
                 <?php
                 }
                 ?>
+                <li><a class=" nav" href="./time.php">Time</a></li>
+                <li><a class=" nav" href="./api.php">API</a></li>
             </ul>
         </nav>
     </header>

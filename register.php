@@ -66,6 +66,7 @@ $_SESSION['logged_in'];
                 }
                 ?>
                 <li><a class=" nav" href="./time.php">Time</a></li>
+                <li><a class=" nav" href="./api.php">API</a></li>
             </ul>
         </nav>
     </header>
@@ -101,10 +102,7 @@ $_SESSION['logged_in'];
   
    ?>
     </div>
-    <footer>
-
-
-    </footer>
+   
 
 
     <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
