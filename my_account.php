@@ -10,7 +10,7 @@
 include "./resurser/conn.php";
 include "./oop.php";
 $check = new Validator();
-//session_start();
+
 
 
 if (isset($_POST["change_uname"])) {
