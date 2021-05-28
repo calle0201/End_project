@@ -107,7 +107,8 @@ if (isset($_POST["delete"])) {
       <div class="modal-body">
         <!-- form to login -->
           <form action="#" method="post">
-            <label for="delete"><b>Are you sure you want to delete your account? <br>
+            <label for="delete"><b>Are you sure you want to delete your account? 
+            <br>
         This is permanent and cant be restored.</b></label>
             <button type="submit"  name="delete" value="Login" class="btn btn-success">yes</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
