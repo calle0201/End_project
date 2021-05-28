@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,MAAM,CAAC;EACL,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,KAAK;EACZ,WAAW,EAAE,KAAK;EAClB,MAAM,EAAE,IAAI;CAAG",
+    "sources": [
+        "../sass/pong.sass"
+    ],
+    "names": [],
+    "file": "pong.css"
+}

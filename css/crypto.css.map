@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAC;EACN,SAAS,EAAE,IAAI;EACf,OAAO,EAAE,QAAQ;EACjB,UAAU,EAAE,qBAAqB;EACjC,MAAM,EAAE,SAAS;EACjB,UAAU,EAAE,MAAM;CAAG",
+    "sources": [
+        "../sass/crypto.sass"
+    ],
+    "names": [],
+    "file": "crypto.css"
+}

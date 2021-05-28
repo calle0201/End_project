@@ -1,9 +1,11 @@
 .time {
-    font-size: 30px;
+  font-size: 30px;
 }
+
 .timediv {
-    padding: 10px 15px;
-    background: rgba(12, 8, 8, 0.452);
-    margin: 100px 40px;
-    text-align: center;
+  padding: 10px 15px;
+  background: rgba(12, 8, 8, 0.452);
+  margin: 100px 40px;
+  text-align: center;
 }
+/*# sourceMappingURL=time.css.map */

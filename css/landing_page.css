@@ -1,57 +1,65 @@
 body {
-    margin: 0;
-    height: 100%;
+  margin: 0;
+  height: 100%;
 }
 
 .register {
-    padding-top: 7%;
+  padding-top: 7%;
 }
+
 input {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
-.kontainer .game {
-    font-size: 50px;
-}
+
 .kontainer {
-    
-    background: rgb(22, 17, 17);
-    color: rgb(212, 212, 212);
-    
-    height: 1264px;
-    text-align: center;
-
+  background: #161111;
+  color: #d4d4d4;
+  height: 1264px;
+  text-align: center;
 }
+
+.kontainer .game {
+  font-size: 50px;
+}
+
 .kontainer h1 {
-    font-size: 50px;
-    text-align: center;
-    margin: 0px;
-    padding: 20px;
-}
-.kontainer h2 {
-    font-size: 40px;
-    text-align: center;
-    margin: 0px;
-    padding: 20px;
+  font-size: 50px;
+  text-align: center;
+  margin: 0px;
+  padding: 20px;
 }
 
-.flexbox {
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
-    
+.kontainer h2 {
+  font-size: 40px;
+  text-align: center;
+  margin: 0px;
+  padding: 20px;
 }
 
 .kontainer img {
-background: black;
-padding: 5px;
-width: 600px;
-height: 90%;
-margin: 10px;
+  background: black;
+  padding: 5px;
+  width: 600px;
+  height: 90%;
+  margin: 10px;
 }
+
+.flexbox {
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .flexbox .score {
-    text-align: center;
-    padding: 5px;
-    background: rgba(12, 8, 8, 0.452);
-    margin: 10px 40px;
-    font-size: 30px;
+  text-align: center;
+  padding: 5px;
+  background: rgba(12, 8, 8, 0.452);
+  margin: 10px 40px;
+  font-size: 30px;
 }
+/*# sourceMappingURL=landing_page.css.map */

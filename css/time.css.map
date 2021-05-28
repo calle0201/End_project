@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,KAAK,CAAC;EACJ,SAAS,EAAE,IAAI;CAAG;;AAEpB,AAAA,QAAQ,CAAC;EACP,OAAO,EAAE,SAAS;EAClB,UAAU,EAAE,qBAAqB;EACjC,MAAM,EAAE,UAAU;EAClB,UAAU,EAAE,MAAM;CAAG",
+    "sources": [
+        "../sass/time.sass"
+    ],
+    "names": [],
+    "file": "time.css"
+}
