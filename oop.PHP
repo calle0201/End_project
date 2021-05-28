@@ -8,12 +8,13 @@ class Validator{
     private $user;
     private $data;
     private $conn;
+    //set some vars to use
     public function set($postdata, $usernow, $connNow) {
         $this->data = $postdata;
         $this->user = $usernow;
         $this->conn = $connNow;
     }
-
+    //check if logged in
     public function checkLogin($siteCheck) {
         switch ($siteCheck) {
             //checks if the site is the landing page
@@ -187,18 +188,20 @@ class Validator{
             $resu = $this->conn->query($sql);
             while ($name = $resu->fetch_assoc()) {
                 $username = $name['user'];
-       
+                //checks if the username that is being fetched is the same as the one you try to login with
                 if ($username == $nameLogin) {
                     break;
                 } else {
                     continue;
                 }
         }
-       if ($username == $nameLogin) {
+        //checks if the username that is being fetched is the same as the one you try to login with
+        if ($username == $nameLogin) {
            $sql = "SELECT pass FROM users WHERE user='$username'";
            $resu = $this->conn->query($sql);
            $pass = $resu->fetch_assoc();
            $hashpass = $pass['pass'];
+           //checks the pass to the password of the user you are trying to login to
            if (password_verify($passLogin, $hashpass))
                 //changes the session to logged in
                 $_SESSION['logged_in'] = true;
@@ -277,33 +280,36 @@ class Validator{
     }
     //to change names
     public function changeName() {
+        //gets some data that is the new name of the person
         $name = $this->data['unameChange'];
         $sql = "SELECT * FROM users WHERE user='$name'";
         $resu = $this->conn->query($sql);
-    
+        //checks if the name already exists
         if (mysqli_num_rows($resu) > 0) {
             $this->errors['unameChange'][] = "the name already exists";
         } else { 
+            //if it doesnt change the old to the new name
             $sql = "UPDATE users SET user='$name' WHERE user='$this->user'";
             $resu =  $this->conn->query($sql);
         }
     }
     //to delete account
     public function deleteAccount() {
+        //gets current user
         $usercurrent = $this->user;
-       
+       //get the ID of the account
         $sql = "SELECT id FROM users WHERE user='$usercurrent'";
         $userId = $this->conn->query($sql);
             while ($ID = $userId->fetch_assoc()) {
                 break;
             }
-
+        //makes the id a var instead of an array
         $userId = $ID['id'];
+        //delete account and highscores
         $sql = "DELETE FROM users WHERE id='$userId'";
         $this->conn->query($sql);
         $sql = "DELETE FROM highscore WHERE person_id='$userId'";
         $this->conn->query($sql);
-        var_dump($userId,$sql);
         header( 'Location:./logout.php');
     }    
     //get score for my account
@@ -333,7 +339,7 @@ class Validator{
         $json = file_get_contents($url);
         // decode the json
         $jsonData = json_decode($json);    
-            
+            //check if the incoming data is empty or not and give info depending on what it is 
         if (!empty($type) AND empty($moneyType) AND empty($moneystring) AND empty($desc)) {
             $money = $jsonData->$type;
 
